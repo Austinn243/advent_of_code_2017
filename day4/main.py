@@ -6,14 +6,13 @@ http://adventofcode.com/2017/day/4
 
 from os import path
 
-
-INPUT_FILE = 'input.txt'
+INPUT_FILE = "input.txt"
 
 
 def read_passphrases(file_path: str) -> list[str]:
     """Read passphrases from a file."""
 
-    with open(file_path, encoding='utf-8') as file:
+    with open(file_path, encoding="utf-8") as file:
         return [line.strip() for line in file]
 
 
@@ -26,6 +25,7 @@ def contains_no_duplicates(passphrase: str) -> bool:
     for word in words:
         if word in seen:
             return False
+
         seen.add(word)
 
     return True
@@ -42,11 +42,11 @@ def contains_no_anagrams(passphrase: str) -> bool:
 
     for word in words:
         sorted_chars = sorted(word)
-        sorted_word = ''.join(sorted_chars)
+        sorted_word = "".join(sorted_chars)
 
         if sorted_word in seen:
             return False
-        
+
         seen.add(sorted_word)
 
     return True
@@ -60,12 +60,16 @@ def main() -> None:
     passphrases = read_passphrases(file_path)
     print(passphrases)
 
-    passphrase_without_duplicate_count = sum(contains_no_duplicates(passphrase) for passphrase in passphrases)
+    passphrase_without_duplicate_count = sum(
+        contains_no_duplicates(passphrase) for passphrase in passphrases
+    )
     print(passphrase_without_duplicate_count)
 
-    passphrase_without_anagram_count = sum(contains_no_anagrams(passphrase) for passphrase in passphrases)
+    passphrase_without_anagram_count = sum(
+        contains_no_anagrams(passphrase) for passphrase in passphrases
+    )
     print(passphrase_without_anagram_count)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
